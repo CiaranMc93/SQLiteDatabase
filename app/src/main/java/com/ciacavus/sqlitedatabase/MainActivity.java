@@ -9,5 +9,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //create a new instance of the database
+        DBAdapter db = new DBAdapter(this);
+
+        //open the database
+        db.open();
+
+
     }
 }
