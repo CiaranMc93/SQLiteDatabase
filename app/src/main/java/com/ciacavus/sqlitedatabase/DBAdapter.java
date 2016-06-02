@@ -18,7 +18,7 @@ public class DBAdapter {
     private static final String NAME = "name";
     private static final String KEY_EMAIL = "email";
     private static final String DATABASE_NAME = "MyDB";
-    private static final String DATABASE_TABLE = "contacts";
+    private static final String DATABASE_TABLE = "students";
     private static final int DATABASE_VERSION = 1;
     private static final String TAG = "DBAdapter";
     private static final String DATABASE = "create table students (Id integer primary key autoincrement" +
@@ -107,7 +107,7 @@ public class DBAdapter {
 
         public DatabaseHelper(Context context) {
             super(context, DATABASE, null, DATABASE_VERSION);
-        }
+    }
 
         @Override
         public void onCreate(SQLiteDatabase db) {
