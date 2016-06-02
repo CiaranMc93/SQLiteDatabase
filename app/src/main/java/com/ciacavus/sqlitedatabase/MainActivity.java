@@ -15,6 +15,11 @@ public class MainActivity extends AppCompatActivity {
 
         //open the database
         db.open();
+        //insert our data
+        long id = db.insertContacts("Ciaran","ciaranmcmanus@live.ie");
+        id = db.insertContacts("Avril","avrildooley@live.ie");
+        //db close
+        db.close();
 
 
     }
