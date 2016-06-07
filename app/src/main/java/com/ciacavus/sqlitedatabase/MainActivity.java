@@ -25,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
 
         db.open();
 
+        long id = db.insertContacts("Ciaran","ciaranmcmanus@live.ie");
+        id = db.insertContacts("Avril","avrildooley@live.ie");
+
         Cursor c = db.getAllContacts();
 
         //perform a query and in a do while loop,

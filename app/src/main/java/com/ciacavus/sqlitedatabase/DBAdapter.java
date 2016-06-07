@@ -1,12 +1,15 @@
 package com.ciacavus.sqlitedatabase;
 
+import android.annotation.TargetApi;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Build;
 import android.util.Log;
+
 
 /**
  * Created by ciaran on 01/06/2016.
@@ -17,21 +20,16 @@ public class DBAdapter {
 
     private static final String NAME = "name";
     private static final String KEY_EMAIL = "email";
-    private static final String DATABASE_NAME = "MyDB";
     private static final String DATABASE_TABLE = "students";
     private static final int DATABASE_VERSION = 1;
     private static final String TAG = "DBAdapter";
-    private static final String DATABASE = "create table students (Id integer primary key autoincrement" +
-            " name text not null, email text not null);";
+    private static final String DATABASE = "CREATE TABLE students (ID integer primary key AUTOINCREMENT, " +
+            "name varchar(255) not null, email varchar(255) not null);";
 
     //database variables
     private Context context;
     private DatabaseHelper DBHelper;
     private SQLiteDatabase db;
-
-    public DBAdapter(MainActivity mainActivity) {
-
-    }
 
     public DBAdapter(Context ctx) {
         this.context = ctx;
@@ -40,7 +38,17 @@ public class DBAdapter {
     }
 
     //method to open the database
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public DBAdapter open() throws SQLException {
+
+        try{
+            //create or open the database before any logic is performed
+            db = SQLiteDatabase.openOrCreateDatabase("StudentDB", null);
+
+        }catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
         //get the db
         db = DBHelper.getWritableDatabase();
         //return instance of the database
@@ -112,6 +120,7 @@ public class DBAdapter {
         @Override
         public void onCreate(SQLiteDatabase db) {
 
+            //try to eecute the query
             try{
                 //execute SQL query
                 db.execSQL(DATABASE);
