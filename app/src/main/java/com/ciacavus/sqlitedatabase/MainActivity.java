@@ -15,19 +15,12 @@ public class MainActivity extends AppCompatActivity {
         //create a new instance of the database
         DBAdapter db = new DBAdapter(this);
 
-//        //open the database
-//        db.open();
-//        //insert our data
-//        long id = db.insertContacts("Ciaran","ciaranmcmanus@live.ie");
-//        id = db.insertContacts("Avril","avrildooley@live.ie");
-//        //db close
-//        db.close();
-
         db.open();
 
-        long id = db.insertContacts("Ciaran","ciaranmcmanus@live.ie");
-        id = db.insertContacts("Avril","avrildooley@live.ie");
+        long id = db.insertContacts("Bob","bob.ross@live.ie");
+        id = db.insertContacts("Forrest","forrest.run@live.ie");
 
+        //create an SQL cursor for the functionality of getting all the contacts
         Cursor c = db.getAllContacts();
 
         //perform a query and in a do while loop,
@@ -44,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //display the contacts in a toast from the cursor values
     private void DisplayContacts(Cursor c) {
         Toast.makeText(this,"id: " + c.getString(0) + "\n" + "Name: " + c.getString(1) + "Email: " + c.getString(2),Toast.LENGTH_LONG).show();
     }
